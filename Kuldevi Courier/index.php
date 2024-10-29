@@ -8,14 +8,19 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            /* Centers horizontally */
             align-items: center;
-            /* Centers vertically */
             height: 100vh;
-            /* Full viewport height */
             margin: 0;
-            /* Remove default margin */
+        }
+
+        h1 {
+            text-align: center;
+            color: black;
+            font-size: 100px;
+            margin-top: -10%;
+            text-decoration: underline;
         }
 
         .cards {
@@ -63,27 +68,41 @@
             filter: blur(10px);
             transform: scale(0.9, 0.9);
         }
-        a{
+
+        a {
             text-decoration: none;
             transition: all 0.9s ease;
-            color:darkmagenta;
+            color: darkmagenta;
         }
-        a:hover{
+
+        a:hover {
             text-decoration: underline;
         }
+        h4{
+            margin-top: -8%;
+            margin-bottom: -7%;
+        }
     </style>
+      <h1>Kuldevi Courier</h1>
 </head>
 
 <body>
-        
-        <div class="cards">
-            <div class="card red">
-                <p class="tip"><a href="Delhievery\display.php">Delhievery</a></p>
-            </div>
-            <div class="card blue">
-                <p class="tip"><a href="Tirupati\display.php">Tirupati</a></p>
-            </div>
+
+  
+
+    <div class="cards">
+        <div class="card red">
+            <p class="tip"><a href="Delhievery\display.php">Delhievery</a></p>
+        </div>
+        <div class="card blue">
+            <p class="tip"><a href="Tirupati\display.php">Tirupati</a></p>
+        </div>
+        <h4>-----------------------------------------------</h4>
+        <div class="card green">
+            <p class="tip"> <a href="backup.php" title="Backup Your Database">Backup</a></p>
+        </div>
     </div>
+    
 </body>
 
 </html>

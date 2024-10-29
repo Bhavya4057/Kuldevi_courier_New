@@ -75,8 +75,8 @@
             transition: all 0.9s ease;
         }
 
-        input:hover,
-        select:hover {
+        input:focus,
+        select:focus {
             border: solid 6px orangered;
             font-size: 34px;
         }

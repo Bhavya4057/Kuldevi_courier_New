@@ -8,7 +8,6 @@
     <style>
         body,
         .insert-a,
-        .backup-a,
         .back-a,
         .input,
         table {
@@ -28,7 +27,6 @@
         }
 
         .insert-a,
-        .backup-a,
         .back-a,
         .input,
         table,
@@ -39,7 +37,6 @@
         }
 
         .insert-a,
-        .backup-a,
         .back-a,
         .input {
             font-size: 25px;
@@ -51,9 +48,7 @@
             color: blue;
         }
 
-        .backup-a {
-            margin-top: 10px;
-        }
+
 
         table {
             border-collapse: collapse;
@@ -75,9 +70,7 @@
         }
 
 
-        .backup-a {
-            color: darkgoldenrod;
-        }
+
 
         .highlight {
             background-color: yellow;
@@ -91,7 +84,6 @@
         }
 
         .insert-a,
-        .backup-a,
         .back-a,
         .input,
         .monthdisplay-a,
@@ -102,7 +94,6 @@
         }
 
         .insert-a:hover,
-        .backup-a:hover,
         .back-a,
         .monthdisplay-a:hover,
         .viewbooking-a:hover,
@@ -113,8 +104,7 @@
         }
 
         .insert-a:hover,
-        .input:hover,
-        .backup-a:hover {
+        .input:hover {
             font-size: 34px;
         }
 
@@ -303,7 +293,6 @@
             </tfoot>
         </table>
     </form><br>
-    <a href="backup.php" class="backup-a">Backup</a><br><br>
     <a href="../index.php" class="back-a">Back</a>
     <script src="jquery.js"></script>
     <script>
