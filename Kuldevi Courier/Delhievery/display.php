@@ -55,7 +55,7 @@
 
         table {
             border-collapse: collapse;
-            font-size: 18px;
+            font-size: 17.8px;
             font-family: calibri;
             table-layout: fixed;
         }

@@ -238,10 +238,10 @@
                 const trackurl = urlParams.get('trackurl') || '#';
 
                 //click here image
-                const imgURL = 'clickhere.png'; //  image URL
-                const imgSize = 40;
+                const imgURL = 'LinkButtonImg.png'; //  image URL
+                const imgSize = 38;
                 const imgpositionX = (pdfWidth - imgSize) / 2 - 50; // Center the image horizontally
-                const imgpositionY = pdfHeight - 59.5; // Align vertically 
+                const imgpositionY = pdfHeight - 57; // Align vertically 
                 pdf.addImage(imgURL, 'PNG', imgpositionX, imgpositionY, imgSize, imgSize);
 
                 // Add a clickable link over the image
@@ -250,32 +250,32 @@
                 });
 
                 // To track text
-                const track = 'To Track Your Parcel';
-                const trackTextX = pdfWidth - 195; // Position
-                const trackTextY = pdfHeight - 14.5; // Align it vertically 
+                const track = 'Tracking your parecl using the link above or by scanning the QR code';
+                const trackTextX = pdfWidth - 203; // Position
+                const trackTextY = pdfHeight - 10; // Align it vertically 
 
-                pdf.setFontSize(25);
+                pdf.setFontSize(18);
                 pdf.setTextColor(25, 25, 112);
                 pdf.text(track, trackTextX, trackTextY);
 
                 // Underline for "To Track Your Parcel"
                 const trackTextWidth = pdf.getTextWidth(track);
                 const trackUnderlineStartX = trackTextX;
-                const trackUnderlineEndX = trackTextX + trackTextWidth+5;
+                const trackUnderlineEndX = trackTextX + trackTextWidth+2;
                 const trackUnderlineY = trackTextY + 1.5; // Slightly below the text
 
                 pdf.setDrawColor(25, 25, 112); // Set line color to match text color
                 pdf.setLineWidth(0.8); // Set line width for underline
                 pdf.line(trackUnderlineStartX, trackUnderlineY, trackUnderlineEndX, trackUnderlineY);
 
-                // Draw a vertical line
+                /*// Draw a vertical line
                 const lineX = (pdfWidth / 2) - 1; // Center the line
                 const lineYStart = pdfHeight - 58;
-                const lineYEnd = pdfHeight -3;
+                const lineYEnd = pdfHeight -19;
 
                 pdf.setDrawColor(0, 0, 0); // Set line color to black
                 pdf.setLineWidth(1.5); // Set line width
-                pdf.line(lineX, lineYStart, lineX, lineYEnd); // Draw vertical line
+                pdf.line(lineX, lineYStart, lineX, lineYEnd); // Draw vertical line*/
 
                 // QR Code Generation
                 const qr = new QRious({
@@ -288,25 +288,7 @@
 
                 pdf.addImage(qrDataUrl, 'PNG', ((pdfWidth - qrSize) / 2) + 50, pdfHeight - 56, qrSize, qrSize);
 
-                // Scan text
-                const scanText = 'Scan QR Code To Track';
-                const scanTextX = pdfWidth - 100; // Position
-                const scanTextY = pdfHeight - 14.5; // Align it vertically 
-
-                pdf.setFontSize(25);
-                pdf.setTextColor(25, 25, 112);
-                pdf.text(scanText, scanTextX, scanTextY);
-
-                // Underline for "Scan QR Code To Track"
-                const scanTextWidth = pdf.getTextWidth(scanText);
-                const scanUnderlineStartX = scanTextX;
-                const scanUnderlineEndX = scanTextX + scanTextWidth+3;
-                const scanUnderlineY = scanTextY + 1.5; // Slightly below the text
-
-                pdf.setDrawColor(25, 25, 112); // Set line color to match text color
-                pdf.setLineWidth(0.8); // Set line width for underline
-                pdf.line(scanUnderlineStartX, scanUnderlineY, scanUnderlineEndX, scanUnderlineY);
-
+                
                 const filename = 'receipt_' + cn_no + '.pdf';
                 pdf.save(filename);
             }).catch(error => {
