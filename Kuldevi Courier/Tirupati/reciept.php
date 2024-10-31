@@ -135,50 +135,50 @@
 
             <tr>
                 <td>Fulfilled By:-
-                    <span><?php echo $_GET['courier']; ?></span>
+                    <span><?php echo $_POST['courier']; ?></span>
                 </td>
                 <td class="date" rowspan="2">
                     Date<br>
-                    <span><?php echo $_GET['date']; ?></span>
+                    <span><?php echo $_POST['date']; ?></span>
                 </td>
             </tr>
 
             <tr>
                 <td>Tracking ID:-
-                    <span><?php echo $_GET['cn_no']; ?></span>
+                    <span><?php echo $_POST['cn_no']; ?></span>
                 </td>
             </tr>
 
             <tr>
                 <td>Station:-
-                    <span><?php echo $_GET['city']; ?></span>
+                    <span><?php echo $_POST['city']; ?></span>
                 </td>
                 <td class="weight" rowspan="2">Weight <br>
-                    <span class="wgt"><?php echo $_GET['weight']; ?> Kg</span>
+                    <span class="wgt"><?php echo $_POST['weight']; ?> Kg</span>
                 </td>
             </tr>
 
             <tr>
                 <td>Pin code:-
-                    <span><?php echo $_GET['pincode']; ?></span>
+                    <span><?php echo $_POST['pincode']; ?></span>
                 </td>
             </tr>
 
             <tr>
                 <td colspan="2">Sender's Name:-
-                    <span><?php echo $_GET['sndr']; ?></span>
+                    <span><?php echo $_POST['sndr']; ?></span>
                 </td>
             </tr>
 
             <tr>
                 <td colspan="2">Receiver's Name:-
-                    <span><?php echo $_GET['rcvr']; ?></span>
+                    <span><?php echo $_POST['rcvr']; ?></span>
                 </td>
             </tr>
 
             <tr>
                 <td colspan="2">Amount:-
-                    <span><?php echo $_GET['shpr_amt']; ?>/-</span>
+                    <span><?php echo $_POST['shpr_amt']; ?>/-</span>
                 </td>
             </tr>
 
@@ -233,10 +233,17 @@
                 }
 
                 //urlparams
-                const urlParams = new URLSearchParams(window.location.search);
-                const cn_no = urlParams.get('cn_no') || 'receipt';
-                const trackurl = urlParams.get('trackurl') || '#';
+                const courierName = '<?php echo addslashes($_POST['courier']); ?>';
+                const cn_no = '<?php echo addslashes($_POST['cn_no']); ?>';
 
+                // Generate tracking URL based on courier name
+                let trackurl;
+                if (courierName.toLowerCase() === 'tirupati') {
+                    trackurl = 'http://www.shreetirupaticourier.net/Frm_DocTrack.aspx?docno=' + cn_no;
+                } else {
+                    trackurl = '#'; // Default or other courier URL
+                }
+                
                 //click here image
                 const imgURL = 'LinkButtonImg.png'; //  image URL
                 const imgSize = 38;
