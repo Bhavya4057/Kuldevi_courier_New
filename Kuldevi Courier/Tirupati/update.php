@@ -108,8 +108,8 @@
                     <label for="date">Date:-</label>
                 </td>
                 <td>
-                    <input type="date" name="c_date" id="date" value="<?php echo $_GET['date']; ?>" required>
-                    <input type="hidden" name="cnno" value="<?php echo $_GET['cn_no']; ?>">
+                    <input type="date" name="c_date" id="date" value="<?php echo $_POST['date']; ?>" required>
+                    <input type="hidden" name="cnno" value="<?php echo $_POST['cn_no']; ?>">
                 </td>
             </tr>
             <tr>
@@ -125,7 +125,7 @@
                     <label for="co_no">Consignment No:-</label>
                 </td>
                 <td>
-                    <input type="text" name="c_co_no" id="co_no" value="<?php echo $_GET['cn_no']; ?>" required>
+                    <input type="text" name="c_co_no" id="co_no" value="<?php echo $_POST['cn_no']; ?>" required>
                 </td>
             </tr>
             <tr>
@@ -133,7 +133,7 @@
                     <label for="s_name">Sender's Name:-</label>
                 </td>
                 <td>
-                    <input type="text" name="c_s_name" id="s_name" placeholder="Enter Sender's Name" required value="<?php echo $_GET['sndr']; ?>">
+                    <input type="text" name="c_s_name" id="s_name" placeholder="Enter Sender's Name" required value="<?php echo $_POST['sndr']; ?>">
                 </td>
             </tr>
             <tr>
@@ -141,7 +141,7 @@
                     <label for="r_name">Reciever's Name:-</label>
                 </td>
                 <td>
-                    <input type="text" name="c_r_name" id="r_name" placeholder="Enter Reciever's Name" required value="<?php echo $_GET['rcvr']; ?>">
+                    <input type="text" name="c_r_name" id="r_name" placeholder="Enter Reciever's Name" required value="<?php echo $_POST['rcvr']; ?>">
                 </td>
             </tr>
             <tr>
@@ -149,7 +149,7 @@
                     <label for="destination">Destination City:-</label>
                 </td>
                 <td>
-                    <input type="text" name="c_destination" id="destination" placeholder="Enter Destination City" required value="<?php echo $_GET['city']; ?>">
+                    <input type="text" name="c_destination" id="destination" placeholder="Enter Destination City" required value="<?php echo $_POST['city']; ?>">
                 </td>
             </tr>
             <tr>
@@ -157,7 +157,7 @@
                     <label for="pincode">Pincode:-</label>
                 </td>
                 <td>
-                    <input type="text" name="c_pincode" id="pincode" pattern="\d*" title="Enter Valid Pincode" placeholder="Enter pincode" maxlength="6" minlength="6" required value="<?php echo $_GET['pincode']; ?>">
+                    <input type="text" name="c_pincode" id="pincode" pattern="\d*" title="Enter Valid Pincode" placeholder="Enter pincode" maxlength="6" minlength="6" required value="<?php echo $_POST['pincode']; ?>">
                 </td>
             </tr>
             <tr>
@@ -165,7 +165,7 @@
                     <label for="weight">Weight(Kg):-</label>
                 </td>
                 <td>
-                    <input type="text" name="c_weight" id="weight" placeholder="Enter Weight in Kg" pattern="^\d+(\.\d{1,2})?$" title="Enter Valid Weight" required value="<?php echo $_GET['weight']; ?>">
+                    <input type="text" name="c_weight" id="weight" placeholder="Enter Weight in Kg" pattern="^\d+(\.\d{1,2})?$" title="Enter Valid Weight" required value="<?php echo $_POST['weight']; ?>">
                 </td>
             </tr>
             <tr>
@@ -173,7 +173,7 @@
                     <label for="at_charge">AT Charge:-</label>
                 </td>
                 <td>
-                    <input type="text" name="c_at_charge" id="at_charge" placeholder="Enter AT Charge" pattern="\d*" title="Enter Valid At Charge" required value="<?php echo $_GET['at_charge']; ?>">
+                    <input type="text" name="c_at_charge" id="at_charge" placeholder="Enter AT Charge" pattern="\d*" title="Enter Valid At Charge" required value="<?php echo $_POST['at_charge']; ?>">
                 </td>
             </tr>
             <tr>
@@ -181,7 +181,7 @@
                     <label for="shpr_amt">Shipper Amount:-</label>
                 </td>
                 <td>
-                    <input type="text" name="c_shpr_amt" id="shpr_amt" placeholder="Enter Shipper Amount" pattern="\d*" title="Enter Valid Shipper Amount" required value="<?php echo $_GET['shpr_amt']; ?>">
+                    <input type="text" name="c_shpr_amt" id="shpr_amt" placeholder="Enter Shipper Amount" pattern="\d*" title="Enter Valid Shipper Amount" required value="<?php echo $_POST['shpr_amt']; ?>">
                 </td>
             </tr>
             <tr>

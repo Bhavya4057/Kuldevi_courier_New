@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
-$table_name = $_GET['monthname'];
-$cnno = $_GET['cn_no']; //get cn_no to delete record
+$table_name = $_POST['monthname'];
+$cnno = $_POST['cn_no']; //get cn_no to delete record
 $query =  "DELETE FROM `$table_name` WHERE `cn_no` = '$cnno'";
 
 $data = mysqli_query($conn, $query);

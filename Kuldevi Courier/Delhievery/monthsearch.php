@@ -34,35 +34,7 @@ if ($total > 0) {
         $date = $result['date'];
         $f_date = date("Y-m-d", strtotime($date));
         $r_date = date("d-m-Y", strtotime($date));
-        $courier = $result['courier'];
-
-        // Generate URLs
-        $updateUrl = "monthupdate.php?date=" . $f_date .
-            "&courier=" . $result['courier'] .
-            "&cn_no=" . $result['cn_no'] .
-            "&sndr=" . $result['sndr'] .
-            "&rcvr=" . $result['rcvr'] .
-            "&city=" . $result['city'] .
-            "&pincode=" . $result['pincode'] .
-            "&weight=" . $result['weight'] .
-            "&at_charge=" . $result['at_charge'] .
-            "&shpr_amt=" . $result['shpr_amt'] .
-            "&monthname=" . $month_name;
-
-        $deleteUrl = "monthdelete.php?cn_no=" . $result['cn_no'] .
-            "&monthname=" . $month_name;
-
-        $RecieptUrl = "reciept.php?date=" . $r_date .
-            "&courier=" . $result['courier'] .
-            "&cn_no=" . $result['cn_no'] .
-            "&sndr=" . $result['sndr'] .
-            "&rcvr=" . $result['rcvr'] .
-            "&city=" . $result['city'] .
-            "&pincode=" . $result['pincode'] .
-            "&weight=" . $result['weight'] .
-            "&trackurl=" . $TrackUrl .
-            "&shpr_amt=" . $result['shpr_amt'];
-
+       $courier = $result['courier'];
 
         $TrackUrl = "";
         if ($courier == "Delhievery") {
@@ -71,8 +43,6 @@ if ($total > 0) {
             $TrackUrl = "https://www.dtdc.in/tracking.asp";
         } elseif ($courier == "Mahavir") {
             $TrackUrl = "http://www.smespl.in/Frm_DocTrackWeb.aspx?docno=" . urlencode($result['cn_no']);
-        } elseif ($courier == "Tirupati") {
-            $TrackUrl = "http://www.shreetirupaticourier.net/Frm_DocTrack.aspx?docno=" . urlencode($result['cn_no']);
         } elseif ($courier == "EcomExpress") {
             $TrackUrl = "https://ecomexpress.in/tracking/?awb_field=" . $result['cn_no'];
         }
@@ -96,10 +66,40 @@ if ($total > 0) {
                                     <div class='dropdown'>
                                         <button class='dropbtn' disabled>Actions</button>
                                         <div class='dropdown-content'>
-                                            <a class='update-a' href='" . $updateUrl . "'>Update</a>
-                                            <a class='delete-a' href='" . $deleteUrl . "' onclick='return checkdelete()'>Delete</a>
-                                            <a class='reciept-a' href='" . $RecieptUrl . "'>Reciept</a>
-                                            <a class='track-a' href='" . $TrackUrl . "' target='_blank'>Track</a>
+                                        <form method='post' action='monthupdate.php'>
+                                            <input type='hidden'  name='date' value='" . $f_date . "'>
+                                            <input type='hidden'  name='courier' value='" . $result['courier'] . "'>
+                                            <input type='hidden'  name='cn_no' value='" . $result['cn_no'] . "'>
+                                            <input type='hidden'  name='sndr' value='" . $result['sndr'] . "'>
+                                            <input type='hidden'  name='rcvr' value='" . $result['rcvr'] . "'>
+                                            <input type='hidden'  name='city' value='" . $result['city'] . "'>
+                                            <input type='hidden'  name='pincode' value='" . $result['pincode'] . "'>
+                                            <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
+                                            <input type='hidden'  name='at_charge' value='" . $result['at_charge'] . "'>
+                                            <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
+                                            <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
+                                            <input type='hidden'  name='monthname' value='" . $month_name . "'>
+                                            <input type='submit'  value='Update'>
+                                        </form>  
+                                        <form method='post' action='monthdelete.php' onsubmit='return checkdelete()'>
+                                            <input type='hidden'  name='cn_no' value='" . $result['cn_no'] . "'>
+                                            <input type='hidden'  name='monthname' value='" . $month_name . "'>
+                                            <input type='submit'  value='Delete'>
+                                        </form>  
+                                        <form method='post' action='reciept.php'>
+                                            <input type='hidden'  name='date' value='" . $r_date . "'>
+                                            <input type='hidden'  name='courier' value='" . $result['courier'] . "'>
+                                            <input type='hidden'  name='cn_no' value='" . $result['cn_no'] . "'>
+                                            <input type='hidden'  name='sndr' value='" . $result['sndr'] . "'>
+                                            <input type='hidden'  name='rcvr' value='" . $result['rcvr'] . "'>
+                                            <input type='hidden'  name='city' value='" . $result['city'] . "'>
+                                            <input type='hidden'  name='pincode' value='" . $result['pincode'] . "'>
+                                            <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
+                                            <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
+                                            <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
+                                            <input type='submit'  value='Reciept'>
+                                        </form>
+                                        <button onclick=\"window.open('" . $TrackUrl . "', '_blank')\">Track</button>
                                         </div>
                                     </div>
                                 </td>

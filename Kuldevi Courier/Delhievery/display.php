@@ -99,7 +99,6 @@
 
 
         .insert-a:hover,
-
         .back-a:hover,
         .monthdisplay-a:hover,
         .viewbooking-a:hover,
@@ -120,15 +119,14 @@
             border: solid 6px orangered;
         }
 
-        /* Custom dropdown button */
-        .dropbtn {
+         /* Custom dropdown button */
+         .dropbtn {
             color: darkgreen;
             font-size: 15px;
             border: none;
             cursor: pointer;
             font-weight: bolder;
             transition: all 0.9s ease;
-
         }
 
         /* Dropdown container */
@@ -148,21 +146,26 @@
         }
 
         /* Links inside the dropdown */
-        .dropdown-content a {
+        .dropdown-content a,
+        .dropdown-content input,
+        .dropdown-content button {
             color: darkorange;
             font-size: 18px;
             padding: 5px;
             text-decoration: none;
-            display: block;
+            font-weight: bold;
+            border: none;
             transition: all 0.9s ease;
         }
 
         /* Change color of links on hover */
-        .dropdown-content a:hover {
+        .dropdown-content a:hover,
+        .dropdown-content input:hover,
+        .dropdown-content button:hover {
             color: orangered;
             text-decoration: underline;
             font-size: 21px;
-
+            cursor: pointer;
         }
 
         /* Show the dropdown content on hover */
@@ -182,7 +185,6 @@
 </head>
 
 <body>
-    <form method="post">
         <h1>Kuldevi Courier</h1>
         <input type="text" class="input" name="search" id="search" placeholder="Enter Text to Search" autocomplete="off">
         <a class="insert-a" href="insert.php">Add New Consignment</a>
@@ -243,30 +245,6 @@
                             $TrackUrl = "https://ecomexpress.in/tracking/?awb_field=" . $result['cn_no'];
                         }
 
-                        $updateUrl = "update.php?date=" . $f_date .
-                            "&courier=" . $result['courier'] .
-                            "&cn_no=" . $result['cn_no'] .
-                            "&sndr=" . $result['sndr'] .
-                            "&rcvr=" . $result['rcvr'] .
-                            "&city=" . $result['city'] .
-                            "&pincode=" . $result['pincode'] .
-                            "&weight=" . $result['weight'] .
-                            "&at_charge=" . $result['at_charge'] .
-                            "&shpr_amt=" . $result['shpr_amt'];
-
-                        $deleteUrl = "delete.php?cn_no=" . $result['cn_no'];
-
-                        $RecieptUrl = "reciept.php?date=" . $r_date .
-                            "&courier=" . $result['courier'] .
-                            "&cn_no=" . $result['cn_no'] .
-                            "&sndr=" . $result['sndr'] .
-                            "&rcvr=" . $result['rcvr'] .
-                            "&city=" . $result['city'] .
-                            "&pincode=" . $result['pincode'] .
-                            "&weight=" . $result['weight'] .
-                            "&trackurl=" . $TrackUrl .
-                            "&shpr_amt=" . $result['shpr_amt'];
-
                         echo "<tr>
                                 <td>" . $srno++ . "</td>    
                                 <td>" . $result['date'] . "</td>
@@ -281,10 +259,38 @@
                                     <div class='dropdown'>
                                         <button class='dropbtn' disabled>Actions</button>
                                         <div class='dropdown-content'>
-                                            <a class='update-a' href='" . $updateUrl . "'>Update</a>
-                                            <a class='delete-a' href='" . $deleteUrl . "' onclick='return checkdelete()'>Delete</a>
-                                            <a class='reciept-a' href='" . $RecieptUrl . "'>Reciept</a>
-                                            <a class='track-a' href='" . $TrackUrl . "' target='_blank'>Track</a>
+                                        <form method='post' action='update.php'>
+                                            <input type='hidden'  name='date' value='" . $f_date . "'>
+                                            <input type='hidden'  name='courier' value='" . $result['courier'] . "'>
+                                            <input type='hidden'  name='cn_no' value='" . $result['cn_no'] . "'>
+                                            <input type='hidden'  name='sndr' value='" . $result['sndr'] . "'>
+                                            <input type='hidden'  name='rcvr' value='" . $result['rcvr'] . "'>
+                                            <input type='hidden'  name='city' value='" . $result['city'] . "'>
+                                            <input type='hidden'  name='pincode' value='" . $result['pincode'] . "'>
+                                            <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
+                                            <input type='hidden'  name='at_charge' value='" . $result['at_charge'] . "'>
+                                            <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
+                                            <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
+                                            <input type='submit'  value='Update'>
+                                        </form>  
+                                        <form method='post' action='delete.php' onsubmit='return checkdelete()'>
+                                            <input type='hidden'  name='cn_no' value='" . $result['cn_no'] . "'>
+                                            <input type='submit'  value='Delete'>
+                                        </form>  
+                                        <form method='post' action='reciept.php'>
+                                            <input type='hidden'  name='date' value='" . $r_date . "'>
+                                            <input type='hidden'  name='courier' value='" . $result['courier'] . "'>
+                                            <input type='hidden'  name='cn_no' value='" . $result['cn_no'] . "'>
+                                            <input type='hidden'  name='sndr' value='" . $result['sndr'] . "'>
+                                            <input type='hidden'  name='rcvr' value='" . $result['rcvr'] . "'>
+                                            <input type='hidden'  name='city' value='" . $result['city'] . "'>
+                                            <input type='hidden'  name='pincode' value='" . $result['pincode'] . "'>
+                                            <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
+                                            <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
+                                            <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
+                                            <input type='submit'  value='Reciept'>
+                                        </form>
+                                        <button onclick=\"window.open('" . $TrackUrl . "', '_blank')\">Track</button>
                                         </div>
                                     </div>
                                 </td>
@@ -307,7 +313,7 @@
                 </tr>
             </tfoot>
         </table>
-    </form><br>
+    <br>
     <a href="../index.php" class="back-a">Back</a>
     <script src="jquery.js"></script>
     <script>

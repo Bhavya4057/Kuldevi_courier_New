@@ -74,13 +74,13 @@
             background-color: yellow;
         }
 
-        input:hover,
-        #selected_month:hover {
+        input:focus,
+        #selected_month:focus {
             border: solid 6px orangered;
             font-size: 34px;
         }
 
-        #selected_month:hover {
+        #selected_month:focus {
             color: orangered;
         }
 
@@ -111,14 +111,13 @@
             font-size: 24.5px;
         }
          /* Custom dropdown button */
-         .dropbtn {
-            color:darkgreen;
+        .dropbtn {
+            color: darkgreen;
             font-size: 15px;
             border: none;
             cursor: pointer;
             font-weight: bolder;
             transition: all 0.9s ease;
-
         }
 
         /* Dropdown container */
@@ -138,21 +137,26 @@
         }
 
         /* Links inside the dropdown */
-        .dropdown-content a {
-            color:darkorange;
+        .dropdown-content a,
+        .dropdown-content input,
+        .dropdown-content button {
+            color: darkorange;
             font-size: 18px;
             padding: 5px;
             text-decoration: none;
-            display: block;
+            font-weight: bold;
+            border: none;
             transition: all 0.9s ease;
         }
 
         /* Change color of links on hover */
-        .dropdown-content a:hover {
+        .dropdown-content a:hover,
+        .dropdown-content input:hover,
+        .dropdown-content button:hover {
             color: orangered;
             text-decoration: underline;
             font-size: 21px;
-
+            cursor: pointer;
         }
 
         /* Show the dropdown content on hover */
