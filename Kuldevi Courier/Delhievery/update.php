@@ -75,8 +75,8 @@
             transition: all 0.9s ease;
         }
 
-        input:hover,
-        select:hover {
+        input:focus,
+        select:focus {
             border: solid 6px orangered;
             font-size: 34px;
         }
@@ -117,13 +117,14 @@
                     <label for="courier">Courier:-</label>
                 </td>
                 <td>
-                    <select name="c_courier" id="Courier" required>
-                        <option value="" disabled>Select</option>
+                    <select name="c_courier" id="Courier">
+                        <option value="Select">Select</option>
                         <option value="Delhievery" <?php if ($_POST['courier'] == "Delhievery") echo 'selected'; ?>>Delhievery</option>
                         <option value="DTDC" <?php if ($_POST['courier'] == "DTDC") echo 'selected'; ?>>DTDC</option>
                         <option value="Mahavir" <?php if ($_POST['courier'] == "Mahavir") echo 'selected'; ?>>Mahavir</option>
                         <option value="EcomExpress" <?php if ($_POST['courier'] == "EcomExpress") echo 'selected'; ?>>EcomExpress</option>
                     </select>
+
                 </td>
             </tr>
             <tr>

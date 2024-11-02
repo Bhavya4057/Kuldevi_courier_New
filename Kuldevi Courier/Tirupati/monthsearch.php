@@ -66,7 +66,6 @@ if ($total > 0) {
                                             <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
                                             <input type='hidden'  name='at_charge' value='" . $result['at_charge'] . "'>
                                             <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
-                                            <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
                                             <input type='hidden'  name='monthname' value='" . $month_name . "'>
                                             <input type='submit'  value='Update'>
                                         </form>  
@@ -86,6 +85,7 @@ if ($total > 0) {
                                             <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
                                             <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
                                             <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
+                                            <input type='hidden' name='page' value='monthdisplay'>
                                             <input type='submit'  value='Reciept'>
                                         </form>
                                         <button onclick=\"window.open('" . $TrackUrl . "', '_blank')\">Track</button>

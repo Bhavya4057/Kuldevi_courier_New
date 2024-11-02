@@ -189,8 +189,16 @@
             </tr>
         </table>
         <button id="generate-pdf">Generate PDF</button>
-        <a class="back-a" href="display.php">Back</a>
-    </div>
+        <?php
+            $page=$_POST['page'];
+            if ($page=="display") {
+                $backurl="display.php";
+            }
+            else{
+                $backurl="monthdisplay.php";
+            }
+        ?>
+        <a class="back-a" href="<?php echo $backurl ?>">Back</a>    </div>
 </body>
 <script>document.addEventListener('DOMContentLoaded', () => {
     const {

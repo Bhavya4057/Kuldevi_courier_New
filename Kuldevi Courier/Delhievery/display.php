@@ -8,7 +8,6 @@
     <style>
         body,
         .insert-a,
-
         .back-a,
         .input,
         table {
@@ -28,7 +27,6 @@
         }
 
         .insert-a,
-
         .back-a,
         .input,
         table,
@@ -39,7 +37,6 @@
         }
 
         .insert-a,
-
         .back-a,
         .input {
             font-size: 25px;
@@ -55,7 +52,7 @@
 
         table {
             border-collapse: collapse;
-            font-size: 17.8px;
+            font-size: 18px;
             font-family: calibri;
             table-layout: fixed;
         }
@@ -96,8 +93,6 @@
             transition: all 0.9s ease;
         }
 
-
-
         .insert-a:hover,
         .back-a:hover,
         .monthdisplay-a:hover,
@@ -109,18 +104,17 @@
         }
 
         .insert-a:hover,
-        .input:hover,
-
         .back-a:hover {
             font-size: 34px;
         }
 
-        .input:hover {
+        .input:focus {
             border: solid 6px orangered;
+            font-size: 34px;
         }
 
-         /* Custom dropdown button */
-         .dropbtn {
+        /* Custom dropdown button */
+        .dropbtn {
             color: darkgreen;
             font-size: 15px;
             border: none;
@@ -185,67 +179,67 @@
 </head>
 
 <body>
-        <h1>Kuldevi Courier</h1>
-        <input type="text" class="input" name="search" id="search" placeholder="Enter Text to Search" autocomplete="off">
-        <a class="insert-a" href="insert.php">Add New Consignment</a>
-        <table align="center" id="consignmenttable">
-            <thead>
-                <tr>
-                    <th>Sr.No</th>
-                    <th>Date</th>
-                    <th>Courier</th>
-                    <th>Consignment No</th>
-                    <th>Sender's Name</th>
-                    <th>Receiver's Name</th>
-                    <th>Destination City</th>
-                    <th>Pincode</th>
-                    <th>Weight(Kg)</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
 
-                <?php
-                include("connection.php");
-                $TrackUrl = "";
-                $month_name = date("F");
-                $table_name =   $month_name;
-                //Check If current month table exists
-                $table_check_query = "SHOW TABLES LIKE '$table_name'";
-                $table_exists = mysqli_query($conn, $table_check_query);
-                if (mysqli_num_rows($table_exists) == 0) { //if not create table
-                    $create_table_query = "CREATE TABLE `delhievery_2024`.`$table_name` (`date` VARCHAR(50) NOT NULL , `courier` VARCHAR(50) NOT NULL , `cn_no` VARCHAR(50) NOT NULL , `sndr` VARCHAR(50) NOT NULL , `rcvr` VARCHAR(50) NOT NULL , `city` VARCHAR(50) NOT NULL , `pincode` INT NOT NULL , `weight` FLOAT NOT NULL , `at_charge` INT NOT NULL , `shpr_amt` INT NOT NULL , PRIMARY KEY (`cn_no`)) ENGINE = InnoDB;";
-                    mysqli_query($conn, $create_table_query);
-                }
-                //select from current month table
-                $query = "SELECT * FROM `$table_name` ORDER BY date ASC";
-                $data = mysqli_query($conn, $query);
-                if (!$data) {
-                    die("Query failed: " . mysqli_error($conn));
-                }
-                $total = mysqli_num_rows($data);
-                $srno = 1; //add srno    
+    <h1>Kuldevi Courier</h1>
+    <input type="text" class="input" name="search" id="search" placeholder="Enter Text to Search" autocomplete="off">
+    <a class="insert-a" href="insert.php">Add New Consignment</a>
+    <table align="center" id="consignmenttable">
+        <thead>
+            <tr>
+                <th>Sr.No</th>
+                <th>Date</th>
+                <th>Courier</th>
+                <th>Consignment No</th>
+                <th>Sender's Name</th>
+                <th>Receiver's Name</th>
+                <th>Destination City</th>
+                <th>Pincode</th>
+                <th>Weight(Kg)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
 
-
-                if ($total != 0) {
-                    while ($result = mysqli_fetch_assoc($data)) {
-                        $date = $result['date'];
-                        $f_date = date("Y-m-d", strtotime($date));
-                        $r_date = date("d-m-Y", strtotime($date));
-                        $courier = $result['courier'];
+            <?php
+            include("connection.php");
+            $TrackUrl = "";
+            $month_name = date("F");
+            $table_name =   $month_name;
+            //Check If current month table exists
+            $table_check_query = "SHOW TABLES LIKE '$table_name'";
+            $table_exists = mysqli_query($conn, $table_check_query);
+            if (mysqli_num_rows($table_exists) == 0) { //if not create table
+                $create_table_query = "CREATE TABLE `delhievery_2024`.`$table_name` (`date` VARCHAR(50) NOT NULL , `courier` VARCHAR(50) NOT NULL , `cn_no` VARCHAR(50) NOT NULL , `sndr` VARCHAR(50) NOT NULL , `rcvr` VARCHAR(50) NOT NULL , `city` VARCHAR(50) NOT NULL , `pincode` INT NOT NULL , `weight` FLOAT NOT NULL , `at_charge` INT NOT NULL , `shpr_amt` INT NOT NULL , PRIMARY KEY (`cn_no`)) ENGINE = InnoDB;";
+                mysqli_query($conn, $create_table_query);
+            }
+            //select from current month table
+            $query = "SELECT * FROM `$table_name` ORDER BY date ASC";
+            $data = mysqli_query($conn, $query);
+            if (!$data) {
+                die("Query failed: " . mysqli_error($conn));
+            }
+            $total = mysqli_num_rows($data);
+            $srno = 1; //add srno    
 
 
-                        if ($courier == "Delhievery") {
-                            $TrackUrl = "https://www.delhivery.com/track/package/" . $result['cn_no'];
-                        } elseif ($courier == "DTDC") {
-                            $TrackUrl = "https://www.dtdc.in/tracking.asp";
-                        } elseif ($courier == "Mahavir") {
-                            $TrackUrl = "http://www.smespl.in/Frm_DocTrackWeb.aspx?docno=" . $result['cn_no'];
-                        } elseif ($courier == "EcomExpress") {
-                            $TrackUrl = "https://ecomexpress.in/tracking/?awb_field=" . $result['cn_no'];
-                        }
+            if ($total != 0) {
+                while ($result = mysqli_fetch_assoc($data)) {
+                    $date = $result['date'];
+                    $f_date = date("Y-m-d", strtotime($date));
+                    $r_date = date("d-m-Y", strtotime($date));
 
-                        echo "<tr>
+                    $courier = $result['courier'];
+                    if ($courier == "Delhievery") {
+                        $TrackUrl = "https://www.delhivery.com/track/package/" . $result['cn_no'];
+                    } elseif ($courier == "DTDC") {
+                        $TrackUrl = "https://www.dtdc.in/tracking.asp";
+                    } elseif ($courier == "Mahavir") {
+                        $TrackUrl = "http://www.smespl.in/Frm_DocTrackWeb.aspx?docno=" . $result['cn_no'];
+                    } elseif ($courier == "EcomExpress") {
+                        $TrackUrl = "https://ecomexpress.in/tracking/?awb_field=" . $result['cn_no'];
+                    }
+
+                    echo "<tr>
                                 <td>" . $srno++ . "</td>    
                                 <td>" . $result['date'] . "</td>
                                 <td>" . $result['courier'] . "</td>
@@ -270,7 +264,6 @@
                                             <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
                                             <input type='hidden'  name='at_charge' value='" . $result['at_charge'] . "'>
                                             <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
-                                            <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
                                             <input type='submit'  value='Update'>
                                         </form>  
                                         <form method='post' action='delete.php' onsubmit='return checkdelete()'>
@@ -288,6 +281,7 @@
                                             <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
                                             <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
                                             <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
+                                            <input type='hidden' name='page' value='display'>
                                             <input type='submit'  value='Reciept'>
                                         </form>
                                         <button onclick=\"window.open('" . $TrackUrl . "', '_blank')\">Track</button>
@@ -295,24 +289,24 @@
                                     </div>
                                 </td>
                             </tr>";
-                    }
                 }
-                ?>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4">
-                        <a class="getdetails-a" href="fulldetails.php">See Full Details</a>
-                    </td>
-                    <td colspan="3">
-                        <a class="viewbooking-a" href="viewbooking.php">View Bookings</a>
-                    </td>
-                    <td colspan="3">
-                        <a class="monthdisplay-a" href="monthdisplay.php">Monthly View</a>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
+            }
+            ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <a class="getdetails-a" href="fulldetails.php">See Full Details</a>
+                </td>
+                <td colspan="3">
+                    <a class="viewbooking-a" href="viewbooking.php">View Bookings</a>
+                </td>
+                <td colspan="3">
+                    <a class="monthdisplay-a" href="monthdisplay.php">Monthly View</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
     <br>
     <a href="../index.php" class="back-a">Back</a>
     <script src="jquery.js"></script>

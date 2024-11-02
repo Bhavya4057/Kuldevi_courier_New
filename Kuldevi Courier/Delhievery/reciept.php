@@ -189,7 +189,16 @@
             </tr>
         </table>
         <button id="generate-pdf">Generate PDF</button>
-        <a class="back-a" href="display.php">Back</a>
+        <?php
+            $page=$_POST['page'];
+            if ($page=="display") {
+                $backurl="display.php";
+            }
+            else{
+                $backurl="monthdisplay.php";
+            }
+        ?>
+        <a class="back-a" href="<?php echo $backurl ?>">Back</a>
     </div>
 </body>
 <script>
@@ -234,23 +243,26 @@
                     }
 
                     //urlparams
-                    const courierName = '<?php echo addslashes($_POST['courier']); ?>';
+                    const courierName = '<?php echo addslashes($_POST['courier']); ?>'.trim().toLowerCase();
                     const cn_no = '<?php echo addslashes($_POST['cn_no']); ?>';
 
-                    // Generate tracking URL based on courier name
                     let trackurl;
-                    if (courierName.toLowerCase() === 'tirupati') {
-                        trackurl = 'http://www.shreetirupaticourier.net/Frm_DocTrack.aspx?docno=' + cn_no;
-                    } else if (courierName.toLowerCase()==='Delhievery') {
-                        trackUrl = 'https://www.delhivery.com/track/package/'+cn_no;
-                    } else if (courierName.toLowerCase()==='DTDC') {
-                        trackUrl = 'https://www.dtdc.in/tracking.asp';
-                    } else if (courierName.toLowerCase()==='Mahavir') {
-                        trackUrl = 'http://www.smespl.in/Frm_DocTrackWeb.aspx?docno='+cn_no;
-                    } else if (courierName.toLowerCase()==='EcomExpress') {
-                        trackUrl = 'https://ecomexpress.in/tracking/?awb_field='+cn_no;
+
+                    // Generate tracking URL based on courier name
+                    if (courierName === 'delhievery') {
+                        trackurl = 'https://www.delhivery.com/track/package/' + cn_no;
+                    } else if (courierName === 'dtdc') {
+                        trackurl = 'https://www.dtdc.in/tracking.asp';
+                    } else if (courierName === 'mahavir') {
+                        trackurl = 'http://www.smespl.in/Frm_DocTrackWeb.aspx?docno=' + cn_no;
+                    } else if (courierName === 'ecomexpress') {
+                        trackurl = 'https://ecomexpress.in/tracking/?awb_field=' + cn_no;
+                    } else {
+                        trackurl = '#'; // Default case
                     }
 
+                    /*// Log the trackurl to confirm
+                    console.log("Generated tracking URL:", trackurl);*/
 
                     //click here image
                     const imgURL = 'LinkButtonImg.png'; //  image URL

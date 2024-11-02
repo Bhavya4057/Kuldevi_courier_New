@@ -124,8 +124,6 @@
                         <option value="DTDC" <?php if ($_POST['courier'] == "DTDC") echo 'selected'; ?>>DTDC</option>
                         <option value="Mahavir" <?php if ($_POST['courier'] == "Mahavir") echo 'selected'; ?>>Mahavir</option>
                         <option value="EcomExpress" <?php if ($_POST['courier'] == "EcomExpress") echo 'selected'; ?>>EcomExpress</option>
-
-
                     </select>
                 </td>
             </tr>

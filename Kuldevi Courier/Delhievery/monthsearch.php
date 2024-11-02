@@ -34,15 +34,14 @@ if ($total > 0) {
         $date = $result['date'];
         $f_date = date("Y-m-d", strtotime($date));
         $r_date = date("d-m-Y", strtotime($date));
-       $courier = $result['courier'];
 
-        $TrackUrl = "";
+        $courier = $result['courier'];
         if ($courier == "Delhievery") {
-            $TrackUrl = "https://www.delhivery.com/track/package/" . urlencode($result['cn_no']);
+            $TrackUrl = "https://www.delhivery.com/track/package/" . $result['cn_no'];
         } elseif ($courier == "DTDC") {
             $TrackUrl = "https://www.dtdc.in/tracking.asp";
         } elseif ($courier == "Mahavir") {
-            $TrackUrl = "http://www.smespl.in/Frm_DocTrackWeb.aspx?docno=" . urlencode($result['cn_no']);
+            $TrackUrl = "http://www.smespl.in/Frm_DocTrackWeb.aspx?docno=" . $result['cn_no'];
         } elseif ($courier == "EcomExpress") {
             $TrackUrl = "https://ecomexpress.in/tracking/?awb_field=" . $result['cn_no'];
         }
@@ -77,7 +76,6 @@ if ($total > 0) {
                                             <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
                                             <input type='hidden'  name='at_charge' value='" . $result['at_charge'] . "'>
                                             <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
-                                            <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
                                             <input type='hidden'  name='monthname' value='" . $month_name . "'>
                                             <input type='submit'  value='Update'>
                                         </form>  
@@ -97,6 +95,7 @@ if ($total > 0) {
                                             <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
                                             <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
                                             <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
+                                            <input type='hidden' name='page' value='monthdisplay'>
                                             <input type='submit'  value='Reciept'>
                                         </form>
                                         <button onclick=\"window.open('" . $TrackUrl . "', '_blank')\">Track</button>

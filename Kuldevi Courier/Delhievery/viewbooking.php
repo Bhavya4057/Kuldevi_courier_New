@@ -79,7 +79,7 @@
             transition: all 0.9s ease;
         }
 
-        input:hover {
+        input:focus {
             border: solid 6px orangered;
             font-size: 34px;
         }

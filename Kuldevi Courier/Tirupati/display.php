@@ -253,7 +253,6 @@
                                             <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
                                             <input type='hidden'  name='at_charge' value='" . $result['at_charge'] . "'>
                                             <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
-                                            <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
                                             <input type='submit'  value='Update'>
                                         </form>  
                                         <form method='post' action='delete.php' onsubmit='return checkdelete()'>
@@ -271,6 +270,7 @@
                                             <input type='hidden'  name='weight' value='" . $result['weight'] . "'>
                                             <input type='hidden'  name='shpr_amt' value='" . $result['shpr_amt'] . "'>
                                             <input type='hidden'  name='TrackUrl' value='" . $TrackUrl . "'>
+                                            <input type='hidden' name='page' value='display'>
                                             <input type='submit'  value='Reciept'>
                                         </form>
                                         <button onclick=\"window.open('" . $TrackUrl . "', '_blank')\">Track</button>
